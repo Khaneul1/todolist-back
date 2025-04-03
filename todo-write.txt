@@ -1,0 +1,40 @@
+섹션6: 할 일 앱 만들기
+
+1. 할 일을 추가할 수 있다 C  /tasks post
+2. 할 일 리스트를 볼 수 있다 R  /tasks get
+3. 할 일에 대해서 끝남 / 안 끝남 표시할 수 있음 U  /tasks/:id put
+>> id를 보내줘야 어떤 할 일이 끝남인지 아닌지 알 수 있우니까
+4. 할 일을 삭제할 수 있다 D  /tasks/:id delete
+
+resful API : api 주소를 정하는 패턴의 이름 중 하나 ~~
+>> 주소 + http 명령어
+/createTasks	/makeTask	/buildTask
+/getTasks
+/modifyTasks
+/deleteTasks
+등등으로 할 수 있겠죠 ~~~?
+url이 깔끔해 보이지 않고 주소가 너무 다양하고 복잡해짐!!
+그래서 나온 게 http 명령어까지 같이 적자 ~~
+/Tasks post
+/Tasks get
+/Tasks put
+/Tasks delete
+요런 식으로 명령어 같이 써 주면 너무너무 깔끔명료해져요 ~~
+
+백엔드 준비
+1) 기본세팅 : npm 세팅, express, mongoose, app listener etc.
+2) 라우터 주소 정의 (해당 기능들을 프론트엔드가 하기 위해서는 백엔드가 제공해야 됨)
+>> 추가하고 리스트 확인, 끝남 표시 등 어떤 주소를 해야 프론트가 할 수 있는지 정의해야 돼
+3) 데이터베이스 스키마 정의
+4) 기능정의 : CRUD
+5. 테스트 : 포스트맨
+
+프론트엔드 준비
+1) 깃 클론
+2) 기능 만들기 : CRUD
+3) 전체적인 테스트
+
+npm install express mongoose body-parser
+>> body-parser : 리퀘스트할 때 들어온 데이터들을 .. property 밑으로 내려주겠다?
+유저 입력값 받아볼 수 있움
+app.use(bodyParser.json()) >> 이런 식으로 파싱을 해야 돼여 ~~
