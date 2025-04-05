@@ -46,8 +46,15 @@ taskController.getTask = async (req, res) => {
 // 끝남 안 끝남 알려주는 것
 taskController.updateTask = async (req, res) => {
   try {
-    const putTask = await Task.find({}).select('-__v');
-    res.status(200).json({ status: 'success', data: putTask });
+    const { id } = req.params;
+    const { isComplete } = req.body;
+
+    const updatedTask = await Task.findByIdAndUpdate(
+      id,
+      { isComplete },
+      { new: true }
+    );
+    res.status(200).json({ status: 'success', data: updatedTask });
   } catch (err) {
     res.status(400).json({ status: 'fail', error: err });
   }
@@ -56,7 +63,9 @@ taskController.updateTask = async (req, res) => {
 // 할 일 삭제 기능
 taskController.DelTask = async (req, res) => {
   try {
-    const deleteTask = await Task.find({}).select('-__v');
+    const { id } = req.params;
+
+    const deleteTask = await Task.findByIdAndDelete(id);
     res.status(200).json({ status: 'success', data: deleteTask });
   } catch (err) {
     res.status(400).json({ status: 'fail', error: err });
