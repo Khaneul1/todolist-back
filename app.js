@@ -1,4 +1,4 @@
-require('dotenv').configDotenv();
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -49,3 +49,11 @@ app.listen(process.env.PORT || 5000, () => {
 // (2) 모델 -> model > user.js 통해 생성 완료
 // (3) 데이터를 저장 (이미 가입된 유저 유무, 패스워드 암호화)
 // (4) 응답을 보낸다
+
+// 2. 로그인
+// 이메일 패스워드 유저가 입력해서 보냄
+// 데이터베이스에 해당 이메일과 패스워드를 가진 유저가 있는지 확인
+// 없으면 로그인 실패 메시지 보내기
+// 있다면? > 유저 정보 + 토큰 보내기
+// 한 번 로그인하면 오랫동안 유지되는 것!! == 토큰
+// 프론트엔드에서는 이 정보를 저장

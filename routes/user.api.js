@@ -20,4 +20,12 @@ const userController = require('../controller/user.controller');
 
 router.post('/', userController.createUser);
 
+// 1. 라우터 설정 >> routes/user.api.js
+// 로그인 라우터 설정 (post 사용)
+// 이메일과 패스워드를 읽어와야 하기 때문에 post 사용
+// get : 추가적인 정보를 req.body에 담아서 보낼 수 없음
+// post는 req.body 사용할 수 있어서 post 사용함!!
+// url로 보내면 get도 사용 가능하지만 이메일/패스워드는 드러나면 안 되는 정보라서 안 됨
+router.post('/login', userController.loginWithEmail);
+
 module.exports = router;
