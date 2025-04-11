@@ -46,7 +46,7 @@ userController.createUser = async (req, res) => {
     //   암호화 한 번만 시키면 쉽게 해석이 되기 때문에 ~~..
     //   bcrypt에서 추천하는 횟수는 10번!!
   } catch (err) {
-    res.status(400).json({ status: 'fail', error: err.message });
+    res.status(400).json({ status: 'fail', message: err.message });
   }
 };
 
@@ -77,7 +77,7 @@ userController.loginWithEmail = async (req, res) => {
     throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');
     // 6. 틀리면 에러메시지 보냄
   } catch (err) {
-    res.status(400).json({ status: 'fail', error: err.message });
+    res.status(400).json({ status: 'fail', message: err.message });
   }
 };
 // 이 함수 user.api.js에서 사용
