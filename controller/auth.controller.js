@@ -8,6 +8,12 @@ authController.authenticate = (req, res, next) => {
   try {
     // 토큰을 헤더의 authorization에 붙임!! Bearer + space와 함께
     const tokenString = req.headers.authorization; //여기의 토큰값은 Bearer a;sld
+    if (!tokenString) {
+      throw new Error('invalid token');
+    }
+    const token = tokenString.replace('Bearer ', ''); //Bearer 를 빈 문자열로 대체
+
+    // verify : 마지막에 콜백 함수 받음
     jwt.verify(token, JWT_SECRET_KEY, (error, payload) => {
       if (error) {
         //   에러가 있다면 아래의 문자열 던짐

@@ -17,8 +17,9 @@ taskController.createTask = async (req, res) => {
 
     // task랑 isComplete이란 데이터를 불러올 건데 이건 request body에서 온다~
     const { task, isComplete } = req.body;
+    const { userId } = req;
     // 새로운 task 하나 만들어 줌 !! task라는 모델을 불러와서
-    const newTask = new Task({ task, isComplete });
+    const newTask = new Task({ task, isComplete, author: userId });
     await newTask.save();
 
     // 저장했다는 걸 알려 줘야 함! 응답값 줘야지요
@@ -34,8 +35,11 @@ taskController.createTask = async (req, res) => {
 taskController.getTask = async (req, res) => {
   try {
     // Task 모델에서 모든 리스트를 달라는 말
-    //   근데 __v 데이터는 빼 줘 ~~
-    const taskList = await Task.find({}).select('-__v');
+    //   근데 __v 데이터는 빼 줘 ~~ .select 활용할 것
+    // populate : 다른 컬렉션에 있는 참조된 데이터를 가지고 온다 (join)
+    const taskList = await Task.find({}).populate('author');
+    console.log('tttt', taskList);
+
     res.status(200).json({ status: 'success', data: taskList });
   } catch (err) {
     res.status(400).json({ status: 'fail', error: err });
