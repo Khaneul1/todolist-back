@@ -29,6 +29,8 @@ userSchema.methods.toJSON = function () {
   const obj = this._doc;
   // password 안 보여 주기 위해서 삭제
   delete obj.password;
+  delete obj.updateAt;
+  delete obj.__v;
   return obj;
 };
 // 스키마는 작업지시서 같은 것!!
