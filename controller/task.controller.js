@@ -37,7 +37,7 @@ taskController.getTask = async (req, res) => {
     // Task 모델에서 모든 리스트를 달라는 말
     //   근데 __v 데이터는 빼 줘 ~~ .select 활용할 것
     // populate : 다른 컬렉션에 있는 참조된 데이터를 가지고 온다 (join)
-    const taskList = await Task.find({}).populate('author');
+    const taskList = await Task.find({}).select('-__v');
     console.log('tttt', taskList);
 
     res.status(200).json({ status: 'success', data: taskList });
