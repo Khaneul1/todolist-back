@@ -71,7 +71,9 @@ userController.loginWithEmail = async (req, res) => {
         // 토큰을 발행할 때 쓰일 유저 정보(id 등), 비밀스러운 키(토큰 암호화 : 아무나 토큰을 가져다 쓰면 안 되니까~~)
         const token = user.generateToken();
         // 7. 응답으로 유저 정보 + 토큰 보냄
-        return res.status(200).json({ status: 'success', user });
+        return res.status(200).json({ status: 'success', user, token }); //처음 오류가 떴을 때 지웠던 코드..
+        // 코드 분석을 잘못해서 응답에 token을 포함시켜야 했는데 그러지 않았음!!
+        // return res.status(200).json({ status: 'success', user }); 이렇게만 했을 경우 토큰 생성만 하고 응답에 포함시키지 않은 것
       }
     }
     throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');

@@ -14,7 +14,7 @@ const taskSchema = Schema(
       // 몽구스 스키마에서 Types.ObjectId라는 것을 제공해 줌
       // id만 받아올 것이라고 타입 지정해 주기
       // ref(참조) User라는 모델에서 id 값을 받아올 것
-      author: { type: Schema.Types.ObjectId, require: true, ref: 'User' },
+      author: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
     },
   },
   { timestamps: true } //이게 있으면 createAt과 updateAt이 생김
