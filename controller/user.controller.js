@@ -71,7 +71,7 @@ userController.loginWithEmail = async (req, res) => {
         // 토큰을 발행할 때 쓰일 유저 정보(id 등), 비밀스러운 키(토큰 암호화 : 아무나 토큰을 가져다 쓰면 안 되니까~~)
         const token = user.generateToken();
         // 7. 응답으로 유저 정보 + 토큰 보냄
-        return res.status(200).json({ status: 'success', user, token });
+        return res.status(200).json({ status: 'success', user });
       }
     }
     throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');
@@ -85,7 +85,7 @@ userController.loginWithEmail = async (req, res) => {
 userController.getUser = async (req, res) => {
   try {
     const { userId } = req; //or req.userId 라고 해도 됨
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
     if (!user) {
       throw new Error('Can not find user');
     }

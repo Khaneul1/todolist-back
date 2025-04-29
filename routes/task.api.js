@@ -6,6 +6,8 @@ const router = express.Router();
 // router.post('/', (req, res) => {
 //   res.send('create task');
 // });
+
+// authController에서 authenticate를 먼저 검사하고 넘어간다
 router.post('/', authController.authenticate, taskController.createTask);
 
 // router.get('/', (req, res) => {

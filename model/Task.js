@@ -17,7 +17,7 @@ const taskSchema = Schema(
       author: { type: Schema.Types.ObjectId, require: true, ref: 'User' },
     },
   },
-  { timestamps: true }
+  { timestamps: true } //이게 있으면 createAt과 updateAt이 생김
   //   데이터 생성 시간 찍힘
 );
 
